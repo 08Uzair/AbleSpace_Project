@@ -13,6 +13,77 @@ The project is split into **four services** in this repository:
 
 ---
 
+# Images
+1. AUTH PAGE
+<img width="1919" height="971" alt="image" src="https://github.com/user-attachments/assets/7d4d56a8-7a21-4476-8058-11c0eebbbe73" />
+
+---
+
+2. TASK KANBAN BOARD
+   
+<img width="1919" height="970" alt="image" src="https://github.com/user-attachments/assets/00cbe00c-986d-43b9-9a5f-14dc559b227f" />
+
+---
+
+3. AI PANNEL
+
+<img width="1919" height="971" alt="image" src="https://github.com/user-attachments/assets/4ea95c51-ce15-48cc-91c2-75c0afebe4bc" />
+
+---
+
+4. TASK LIST BOARD
+
+<img width="1920" height="969" alt="image" src="https://github.com/user-attachments/assets/74ee507f-0666-4751-b243-4bc146059c35" />
+
+---
+
+5.Panel Fields
+
+<img width="1919" height="975" alt="image" src="https://github.com/user-attachments/assets/45fd6d8e-bb9e-4daa-b3ff-1189f445b789" />
+
+---
+
+6. Panel Filters
+   
+<img width="1919" height="972" alt="image" src="https://github.com/user-attachments/assets/765b94db-4193-4529-9131-383757a07fee" />
+
+---
+7. CREATE TASK PAGE
+
+<img width="1919" height="972" alt="image" src="https://github.com/user-attachments/assets/c6d5d6fb-005c-4c03-a432-b4ce7f6adc73" />
+
+---
+
+8. PROJECT PAGE
+
+<img width="1919" height="968" alt="image" src="https://github.com/user-attachments/assets/9a522698-7e45-4992-86dd-c59ec13e60ce" />
+
+---
+
+9. CREATE PROJECT POP UP
+   
+<img width="1919" height="972" alt="image" src="https://github.com/user-attachments/assets/89b9d178-b78b-4fb6-8121-f105c32ac32d" />
+
+---
+ 
+10. PROFILE PAGE 
+
+<img width="1919" height="973" alt="image" src="https://github.com/user-attachments/assets/700f55cf-46b8-4d95-94ff-ccbbff2107ca" />
+
+---
+
+11. THEME CUSTOMIZATION : DARK & LIGHT MODE
+
+<img width="1919" height="973" alt="image" src="https://github.com/user-attachments/assets/b01bb13b-b29f-40e4-9e8d-4ea8caf0b276" />
+
+---
+
+12. COLOR MODE
+
+<img width="1919" height="970" alt="image" src="https://github.com/user-attachments/assets/40519ff6-96f8-4259-bc6e-d17698aff588" />
+
+---
+
 ## 1. What We Built
 
 A complete task-management application ("AbleSpace") that lets users:
