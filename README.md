@@ -13,6 +13,10 @@ The project is split into **four services** in this repository:
 
 ---
 
+# VIDEO DEMO : https://youtu.be/dPNHTPXIeIE
+
+---
+
 # Images
 1. AUTH PAGE
 <img width="1919" height="971" alt="image" src="https://github.com/user-attachments/assets/7d4d56a8-7a21-4476-8058-11c0eebbbe73" />
