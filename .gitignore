@@ -4,3 +4,4 @@ node_modules/
 *.err.log
 .vercel
 .next/
+infra/.env

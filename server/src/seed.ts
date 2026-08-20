@@ -1,7 +1,7 @@
 import "dotenv/config";
 import mongoose from "mongoose";
-import { connectDb } from "./db.js";
-import Task from "./models/Task.js";
+import { resolveMongoUri } from "./database/database-uri";
+import { TaskSchema } from "./tasks/tasks.schema";
 
 const SEED_TASKS = [
   { title: "Write API Documentation", desc: "Create clear and detailed API documentation to guide developers.", status: "todo", priority: "Medium", memberId: "m1", dueDate: "2026-07-29", tags: ["API", "Docs"] },
@@ -20,18 +20,20 @@ const SEED_TASKS = [
 
 async function seed() {
   try {
-    await connectDb(process.env.MONGODB_URI);
+    const { uri } = await resolveMongoUri(process.env.MONGODB_URI);
+    await mongoose.connect(uri, { serverSelectionTimeoutMS: 15000 });
     console.log("Connected to MongoDB Atlas");
-    await Task.deleteMany({ ownerId: "guest" });
-    await Task.insertMany(
+    const TaskModel = mongoose.model("Task", TaskSchema);
+    await TaskModel.deleteMany({ ownerId: "guest" });
+    await TaskModel.insertMany(
       SEED_TASKS.map((t) => ({ ...t, ownerId: "guest" }))
     );
     console.log(`Seeded ${SEED_TASKS.length} tasks for guest user`);
     await mongoose.disconnect();
   } catch (err) {
-    console.error("Seeding failed:", err.message);
+    console.error("Seeding failed:", (err as Error).message);
     process.exit(1);
   }
 }
 
-seed();
+void seed();

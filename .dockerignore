@@ -1,0 +1,12 @@
+.git
+.gitignore
+*.md
+*.log
+**/node_modules
+**/dist
+**/.next
+**/.env
+**/.env.local
+infra
+run.ps1
+.vercel

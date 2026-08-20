@@ -1,6 +1,55 @@
-import mongoose from "mongoose";
+import { HydratedDocument, Schema } from "mongoose";
 
-const taskSchema = new mongoose.Schema(
+export interface TaskSubtask {
+  id: string;
+  title: string;
+  done: boolean;
+}
+
+export interface TaskComment {
+  id: string;
+  text: string;
+  author: string;
+  authorName: string;
+  authorPicture: string;
+  createdAt: string;
+}
+
+export interface TaskResource {
+  id: string;
+  name: string;
+  url: string;
+}
+
+export interface TaskWatcher {
+  id: string;
+  name: string;
+  picture: string;
+}
+
+export interface Task {
+  ownerId: string;
+  projectId: string;
+  title: string;
+  desc: string;
+  status: "todo" | "doing" | "completed" | "onhold";
+  priority: "High" | "Medium" | "Low";
+  memberId: string;
+  dueDate: string;
+  tags: string[];
+  subtasks: TaskSubtask[];
+  comments: TaskComment[];
+  resources: TaskResource[];
+  locked: boolean;
+  watchers: TaskWatcher[];
+  id?: string;
+}
+
+export type TaskDocument = HydratedDocument<Task>;
+
+export const TASK_MODEL = "Task";
+
+export const TaskSchema = new Schema<Task>(
   {
     ownerId: { type: String, required: true, index: true },
     projectId: { type: String, default: "", index: true },
@@ -67,14 +116,15 @@ const taskSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-taskSchema.set("toJSON", {
+TaskSchema.set("toJSON", {
   virtuals: true,
   versionKey: false,
-  transform: (_doc, ret) => {
-    ret.id = ret._id.toString();
+  transform: (
+    _doc: unknown,
+    ret: Task & { _id?: unknown } & { __v?: unknown }
+  ) => {
+    ret.id = String(ret._id);
     delete ret._id;
     return ret;
   },
 });
-
-export default mongoose.model("Task", taskSchema);

@@ -6,7 +6,7 @@ import { fetchTasks } from "@/store/slices/tasksSlice";
 import { fetchProjects } from "@/store/slices/projectsSlice";
 import {
   Sparkles,
-  X,
+  X, 
   ArrowUp,
   Check,
   Loader2,

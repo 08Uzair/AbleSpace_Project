@@ -1,0 +1,54 @@
+# Render Blueprint — deploys all AbleSpace services from their Dockerfiles.
+# NOTE: paths are prefixed with "AbleSpace/" because the repo root contains
+# the AbleSpace/ folder (nested layout). Adjust if you move files to the root.
+# After creation, set the "sync: false" secrets (MONGODB_URI, GROQ_API_KEY)
+# in the Render dashboard (Environment tab of each service).
+
+services:
+  # ------------------------------ API server ------------------------------
+  - type: web
+    name: ablespace-server
+    runtime: docker
+    dockerfilePath: ./AbleSpace/server/Dockerfile
+    dockerContext: ./AbleSpace/server
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: "5000"
+      - key: MONGODB_URI
+        sync: false
+      - key: CLIENT_ORIGIN
+        value: https://ablespace-client.onrender.com
+
+  # ------------------------------ AI bridge -------------------------------
+  - type: web
+    name: ablespace-ai-server
+    runtime: docker
+    dockerfilePath: ./AbleSpace/ai-server/Dockerfile
+    dockerContext: ./AbleSpace
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: "5001"
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-20b
+      - key: API_BASE_URL
+        value: https://ablespace-server.onrender.com
+      - key: MCP_SERVER_PATH
+        value: ../mcp-server/index.js
+      - key: CLIENT_ORIGIN
+        value: https://ablespace-client.onrender.com
+
+  # ------------------------------- Client ---------------------------------
+  - type: web
+    name: ablespace-client
+    runtime: docker
+    dockerfilePath: ./AbleSpace/client/Dockerfile
+    dockerContext: ./AbleSpace/client
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://ablespace-server.onrender.com
+      - key: NEXT_PUBLIC_AI_URL
+        value: https://ablespace-ai-server.onrender.com

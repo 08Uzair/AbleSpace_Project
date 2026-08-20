@@ -4,7 +4,7 @@
 
 .SERVICES
     MCP Server      : stdio
-    Express API     : 5000
+    NestJS API     : 5000
     AI Server       : 5001
     Next.js Client  : 3000
 
@@ -259,7 +259,7 @@ $Services = @(
     @{
         Name = "SERVER"
         Folder = "server"
-        Command = "node server.js"
+        Command = "npm run start:prod"
     },
     @{
         Name = "AI"
@@ -408,6 +408,27 @@ function Start-AbleSpaceJob {
 
                 return
             }
+# ------------------------------------------------
+            # NESTJS SERVER
+            # ------------------------------------------------
+
+            if ($Command -eq "npm run start:prod") {
+
+                if ($DevMode) {
+
+                    npm run start:dev
+
+                }
+                else {
+
+                    npm run build
+                    if ($LASTEXITCODE -ne 0) { exit 1 }
+                    npm run start:prod
+
+                }
+
+                return
+            }
 
             # ------------------------------------------------
             # NODE SERVICES
@@ -415,12 +436,7 @@ function Start-AbleSpaceJob {
 
             if ($DevMode) {
 
-                if ($Command -eq "node server.js") {
-
-                    node --watch server.js
-
-                }
-                elseif ($Command -eq "node index.js") {
+                if ($Command -eq "node index.js") {
 
                     node --watch index.js
 
@@ -428,14 +444,10 @@ function Start-AbleSpaceJob {
             }
             else {
 
-                if ($Command -eq "node server.js") {
-
-                    node server.js
-
-                }
-                elseif ($Command -eq "node index.js") {
+                if ($Command -eq "node index.js") {
 
                     node index.js
+
                 }
             }
 
